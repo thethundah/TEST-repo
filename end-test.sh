@@ -45,6 +45,7 @@ while [[ -z $commentaire ]]; do
 done
 
 
-echo "vous avez ajouter un commentaire pour" $current
+message6=$(echo "vous avez ajouter un commentaire pour" $current)
+displau_message "$message6"
 git commit -m "$commentaire"
 git push --set-upstream origin $current
