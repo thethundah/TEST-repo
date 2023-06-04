@@ -3,7 +3,7 @@
 display_message() {
     local message="$1"
     local line_length=${#message}
-    local max_line_length=50  # Maximum number of characters per line
+    local max_line_length=38  # Maximum number of characters per line
 
     # Split the message into multiple lines
     local formatted_message=""
@@ -35,8 +35,11 @@ while [[ -z $commentaire ]]; do
 	display_message "$message3"
 	read -p "commentaire > " commentaire
 	if [[ -z $commentaire ]]; then
-		message4=$(echo -e "Le commentaire ne peut rester vide.   Exemple : \n|  ajout regle, AZC-HUB-PROD, SC-17509")
+		message4=$(echo -e "Le commentaire ne peut rester vide.")
 		display_message "$message4"
+		echo "---------------Exemple--------------------"
+		message5=$(echo "ajout regle, AZC-HUB-PROD, SC-17509")
+		display_message "$message5"
 		read -p "commentaire > " commentaire
 	fi
 done
