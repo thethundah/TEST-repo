@@ -22,14 +22,27 @@ display_message() {
 }
 
 
-git add .
-current=$(git branch --show-current &2>/dev/null)
-mess1=$(echo -e "Ajouter un commentaire a votre billet Tufin")
-display_message"$mess1"
-mess2=$(echo -e $mess1 $current "\n")
-display_message"$mess2"
-echo -e "[DESCRIPTION], [COUPE_FEUX], [BILLET_TUFIN] \n"
-read -p "commentaire > " commentaire
-echo "vous avez ajouter un commentaire pour" $current
-git commit -m "$commentaire"
-git push --set-upstream origin $current
+git checkout master
+git pull
+message1=$(echo -e "Quel est le numero du billet Tufin?")
+display_message "$message1"
+read -p "SC-" tufin
+
+while [[ -z $tufin ]]; do
+	message3=$(echo "Doit contenir une serie de 5 chiffres!")
+	display_message "$message3"
+	read -p "SC-" tufin
+	if [[ -z $tufin ]]; then
+		message4=$(echo "Doit contenir une serie de 5 chiffres!  Exemple : SC-17509")
+		display_message "$message4"
+		read -p "SC-" tufin
+	fi
+done
+
+
+git checkout -b SC-$tufin
+mkdir SC-$tufin
+touch SC-$tufin/SC-$tufin.txt
+
+message=$(echo -e "Vous pouvez maintenant aller directement dans le fichier cree dans la branch et le dossier qui on le nom du billet Tufin")
+display_message "$message"
