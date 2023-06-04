@@ -1,10 +1,10 @@
 #!/bin/bash
-git add .
-current=$(git branch --show-current &2>/dev/null)
-mess1="Ajouter un commentaire a votre billet Tufin"
-echo -e $mess1 $current "\n"
-echo -e "[DESCRIPTION], [COUPE_FEUX], [BILLET_TUFIN] \n"
-read -p "commentaire > " commentaire
-echo "vous avez ajouter un commentaire pour" $current
-git commit -m "$commentaire"
-git push --set-upstream origin $current
+
+git checkout master
+git pull
+echo "quel est le numero du billet tufin?"
+read tufin
+git checkout -b SC-$tufin
+mkdir SC-$tufin
+touch SC-$tufin/SC-$tufin.txt
+echo -e "\n | Vous pouvez maintenant aller directement    | \n | dans le fichier  cree dans la branch        | \n | et le dossier qui on le nom du billet Tufin |"
